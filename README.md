@@ -2,12 +2,14 @@ project-root/
 │
 ├── data/               # Dataset dan file terkait
 │   ├── raw/            # Data mentah
+│   │   ├── prepare_data.py
 │   ├── processed/      # Data yang sudah diolah
+│   ├── preprocessing_data.py
 │
 ├── models/             # Direktori untuk berbagai model
 │   ├── BERT.py
-|   ├── LSTM.py
-|   ├── Transformer.py
+│   ├── LSTM.py
+│   ├── Transformer.py
 │
 ├── modules/            # Berisi modul-modul khusus
 │   ├── qa_module.py    
