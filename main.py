@@ -38,7 +38,7 @@ def main():
 print(output)
 
     # Preprocessing data():
-    data = load_data('data/raw/dataset.csv')
+    data = load_data('/kaggle/input/arabic-library/my_csv.csv')
     processed_data = preprocess_data(data)
     save_processed_data(processed_data, 'data/processed/processed_dataset.csv')
     
