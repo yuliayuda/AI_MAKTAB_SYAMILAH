@@ -10,3 +10,7 @@ def preprocess_data(df):
     df.dropna(inplace=True)
     df.drop_duplicates(inplace=True)
     return df
+    
+def save_processed_data(df, output_path):
+    # Simpan data yang sudah diproses ke file CSV
+    df.to_csv(output_path, index=False)
