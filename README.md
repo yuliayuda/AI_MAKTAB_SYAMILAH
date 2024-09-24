@@ -7,10 +7,9 @@ project-root/
 │
 
 ├── models/             # Direktori untuk berbagai model
-│   ├── question_answering/
-│   ├── retrieval/
-│   ├── translation/
-│   ├── summarization/
+│   ├── BERT.py
+|   ├── LSTM.py
+|   ├── Transformer.py
 │
 
 ├── modules/            # Berisi modul-modul khusus
