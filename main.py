@@ -25,7 +25,7 @@ def main():
     # Setup logging (jika diperlukan)
     setup_logging()
 
-    user_input = input("Masukkan pertanyaan: ")
+    user_input = input("حكم النية في الصلاة؟")
 
     # Preprocessing input
     processed_input = preprocess_input(user_input)
