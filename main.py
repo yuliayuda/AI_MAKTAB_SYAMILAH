@@ -1,3 +1,14 @@
+# main.py
+
+# Impor pustaka yang diperlukan
+import importlib
+import pandas as pd
+import numpy as np
+from transformers import pipeline  # Jika Anda menggunakan fungsi dari transformers
+import torch  # Jika Anda menggunakan PyTorch
+import tensorflow as tf  # Jika Anda menggunakan TensorFlow
+
+# Impor dari modul Anda
 from modules.qa_module import get_answer
 from modules.retrieval_module import search_reference
 from utils.preprocessing import preprocess_input
@@ -8,6 +19,27 @@ from data.preprocessing_data import load_data, preprocess_data
 from training.train_model import train_model
 from evaluation.evaluate_model import evaluate_model
 from logs.logging import setup_logging, log_message
+
+# Pemeriksaan Instalasi Pustaka
+required_libraries = ['transformers', 'torch', 'tensorflow', 'elasticsearch', 'pandas', 'numpy', 'sklearn']
+failed_imports = []
+
+for library in required_libraries:
+    try:
+        importlib.import_module(library)
+        print(f"Library '{library}' is installed successfully.")
+    except ImportError:
+        failed_imports.append(library)
+
+if failed_imports:
+    print("The following libraries are not installed:")
+    for failed in failed_imports:
+        print(f"- {failed}. Please install it from its documentation.")
+else:
+    print("All required libraries are installed successfully.")
+
+# ... lanjutkan dengan logika lainnya ...
+
 
 def main():
     user_input = input("Masukkan pertanyaan: ")
