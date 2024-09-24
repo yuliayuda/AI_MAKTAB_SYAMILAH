@@ -1,7 +1,7 @@
 from transformers import pipeline
 
 # Inisialisasi model penerjemahan (mT5 atau model lain yang mendukung Arabic-Indonesia)
-translation_model = pipeline("translation", model="Helsinki-NLP/opus-mt-ar-en")
+translation_model = pipeline("translation", model="Helsinki-NLP/opus-mt-ar-en", device=0)  # device=0 for GPU))
 
 def translate_text(text, target_language="id"):
     # Terjemahkan dari Arab ke Indonesia atau sebaliknya
