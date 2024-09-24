@@ -36,8 +36,8 @@ def main():
     # Get answer from QA model
     answer = get_answer(processed_input, reference)
 
-    print("Jawaban:", answer)
-    print("Referensi:", reference)
+    print("الجواب:", answer)  # "Jawaban:" dalam bahasa Arab
+    print("المصدر:", reference)  # "Referensi:" dalam bahasa Arab
 
     # Terjemahkan jawaban jika diperlukan
     translation = translate_text(answer, target_language="id")
