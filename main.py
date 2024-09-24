@@ -35,7 +35,7 @@ def main():
     # Format output untuk ditampilkan
     output = format_output(answer, reference, translation, summary)
 
-print(output)
+    print(output)
 
     # Preprocessing data():
     data = load_data('/kaggle/input/arabic-library/my_csv.csv')
@@ -47,9 +47,9 @@ print(output)
 
     # Evaluasi model
     evaluation_results = evaluate_model(trained_model, processed_data)
-print("Hasil evaluasi:", evaluation_results)
+    print("Hasil evaluasi:", evaluation_results)
 
-log_message(f"Hasil evaluasi: {evaluation_results}")
+    log_message(f"Hasil evaluasi: {evaluation_results}")
 
 
 if __name__ == "__main__":
