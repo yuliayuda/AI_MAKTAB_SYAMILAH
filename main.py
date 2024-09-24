@@ -1,12 +1,12 @@
 # main.py
 
 # Impor pustaka yang diperlukan
-import importlib
 import pandas as pd
 import numpy as np
 from transformers import pipeline  # Jika Anda menggunakan fungsi dari transformers
 import torch  # Jika Anda menggunakan PyTorch
 import tensorflow as tf  # Jika Anda menggunakan TensorFlow
+from elasticsearch import Elasticsearch  # Jika Anda menggunakan Elasticsearch
 
 # Impor dari modul Anda
 from modules.qa_module import get_answer
@@ -20,28 +20,11 @@ from training.train_model import train_model
 from evaluation.evaluate_model import evaluate_model
 from logs.logging import setup_logging, log_message
 
-# Pemeriksaan Instalasi Pustaka
-required_libraries = ['transformers', 'torch', 'tensorflow', 'elasticsearch', 'pandas', 'numpy', 'sklearn']
-failed_imports = []
-
-for library in required_libraries:
-    try:
-        importlib.import_module(library)
-        print(f"Library '{library}' is installed successfully.")
-    except ImportError:
-        failed_imports.append(library)
-
-if failed_imports:
-    print("The following libraries are not installed:")
-    for failed in failed_imports:
-        print(f"- {failed}. Please install it from its documentation.")
-else:
-    print("All required libraries are installed successfully.")
-
-# ... lanjutkan dengan logika lainnya ...
-
 
 def main():
+    # Setup logging (jika diperlukan)
+    setup_logging()
+
     user_input = input("Masukkan pertanyaan: ")
 
     # Preprocessing input
@@ -56,8 +39,6 @@ def main():
     print("Jawaban:", answer)
     print("Referensi:", reference)
 
-
-    # Terjemahkan:
     # Terjemahkan jawaban jika diperlukan
     translation = translate_text(answer, target_language="id")
 
@@ -67,15 +48,16 @@ def main():
     # Format output untuk ditampilkan
     output = format_output(answer, reference, translation, summary)
 
-    print(output)
+    print("Output:", output)
 
-    # Preprocessing data():
+    # Preprocessing data
     data = load_data('/kaggle/input/arabic-library/my_csv.csv')
     processed_data = preprocess_data(data)
-    save_processed_data(processed_data, 'data/processed/processed_dataset.csv')
-    
+    processed_file_path = 'data/processed/processed_dataset.csv'  # Pastikan direktori ini ada
+    processed_data.to_csv(processed_file_path, index=False)  # Simpan sebagai CSV
+
     # Misalkan Anda memiliki model yang sudah dilatih
-    trained_model = train_model(model, processed_data)
+    trained_model = train_model(processed_data)
 
     # Evaluasi model
     evaluation_results = evaluate_model(trained_model, processed_data)
