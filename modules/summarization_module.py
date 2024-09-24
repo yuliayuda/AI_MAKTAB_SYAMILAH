@@ -1,7 +1,7 @@
 from transformers import pipeline
 
 # Inisialisasi model summarization (T5 atau mT5)
-summarization_model = pipeline("summarization", model="t5-small")
+summarization_model = pipeline("summarization", model="t5-small", device=0)  # device=0 for GPU))
 
 def summarize_text(text):
     # Buat ringkasan teks
