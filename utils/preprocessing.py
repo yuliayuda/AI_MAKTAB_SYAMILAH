@@ -1,4 +1,5 @@
 import re
+import pandas as pd  # Tambahkan impor pandas
 from camel_tools.utils.charmap import CharMapper
 from nltk.tokenize import word_tokenize
 import nltk
