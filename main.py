@@ -25,6 +25,23 @@ def main():
     # Setup logging (jika diperlukan)
     setup_logging()
 
+    # Mengatur konfigurasi logging
+    logging.basicConfig(level=logging.INFO)
+    
+    def main():
+        # Proses memuat dan mempersiapkan data
+        logging.info("Memulai proses pemrosesan data...")
+        data = preprocess_data('/path/to/your/data.csv')  # Ganti dengan path data Anda
+        logging.info("Pemrosesan data selesai.")
+    
+        # Memulai pelatihan model
+        logging.info("Mulai proses pelatihan...")
+        try:
+            models = train_model(data)  # Memanggil fungsi pelatihan
+            logging.info("Pelatihan selesai untuk semua model.")
+        except Exception as e:
+            logging.error(f"Terjadi kesalahan saat pelatihan: {e}")
+            
     #user_input = input("حكم النية في الصلاة؟")
 
     # Preprocessing input
