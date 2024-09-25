@@ -16,6 +16,6 @@ def generate_text(prompt):
 
 if __name__ == "__main__":
     data = load_data('/kaggle/input/arabic-library/my_csv.csv')
-    prompt = "Masukkan teks untuk dihasilkan: "
+    prompt = "ما حكم اكل الميتة؟ "
     generated_text = generate_text(prompt)
     print(generated_text)
