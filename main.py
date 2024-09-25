@@ -1,4 +1,3 @@
-import pandas as pd
 from utils.preprocessing import load_data, arabic_preprocessing, split_data
 from models.text_classification import train_text_classification
 from models.information_retrieval import retrieve_information
