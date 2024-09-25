@@ -8,10 +8,6 @@ import nltk
 # Mengunduh tokenizer bahasa Arab
 nltk.download('punkt')
 
-def load_data(file_path):
-    print("Membaca dataset...")
-    return pd.read_csv(file_path)
-
 def arabic_preprocessing(texts):
     tqdm.pandas(desc="Memproses teks")
 
@@ -35,7 +31,26 @@ def arabic_preprocessing(texts):
     print("\nProses selesai.")
     return processed_texts
 
+def load_data_in_chunks(file_path, chunksize=1000):
+    print("Membaca dataset dalam chunks...")
+    chunk_results = []
+
+    for chunk in pd.read_csv(file_path, chunksize=chunksize):
+        print(f"Memproses chunk dengan {len(chunk)} baris...")
+        processed_texts = arabic_preprocessing(chunk['text'])
+        chunk_results.extend(processed_texts)
+
+    print("\nSemua chunk diproses.")
+    return chunk_results
+
 def split_data(df, test_size=0.2):
     from sklearn.model_selection import train_test_split
     train, test = train_test_split(df, test_size=test_size)
     return train, test
+
+# Contoh penggunaan
+file_path = "data/dataset.csv"  # Ganti dengan path dataset Anda
+processed_data = load_data_in_chunks(file_path, chunksize=1000)
+
+# Menyimpan hasil ke file CSV baru jika diperlukan
+pd.DataFrame(processed_data, columns=['processed_text']).to_csv("data/processed_data.csv", index=False)
