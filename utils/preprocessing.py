@@ -41,7 +41,9 @@ def load_data_in_chunks(file_path, chunksize=1000):
     for chunk in pd.read_csv(file_path, chunksize=chunksize):
         total_chunks += 1
         chunk_size = len(chunk)
-        print(f"\nMemproses chunk ke-{total_chunks} dengan {chunk_size} baris...")
+        
+        # Tampilkan informasi chunk yang sedang diproses
+        print(f"\nMemproses chunk: ke {total_chunks} dengan {chunk_size} baris...")
         
         # Proses teks dalam chunk
         processed_texts = arabic_preprocessing(chunk['text'])
@@ -50,10 +52,12 @@ def load_data_in_chunks(file_path, chunksize=1000):
         # Update progress
         processed_rows = total_chunks * chunksize
         percentage_loaded = (processed_rows / total_rows) * 100
-        print(f"Loading datasets: {'|' * int(percentage_loaded // 5)} {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
+        print(f"Load Datasets: {'>' * int(percentage_loaded // 5)} {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
 
     print("\n\nSemua chunk diproses.")
     return chunk_results
+
+
 
 # Contoh penggunaan
 file_path = "/kaggle/input/arabic-library/my_csv.csv"  # Ganti dengan path dataset Anda
