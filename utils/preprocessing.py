@@ -49,7 +49,7 @@ def split_data(df, test_size=0.2):
     return train, test
 
 # Contoh penggunaan
-file_path = "data/dataset.csv"  # Ganti dengan path dataset Anda
+file_path = "/kaggle/input/arabic-library/my_csv.csv"  # Ganti dengan path dataset Anda
 processed_data = load_data_in_chunks(file_path, chunksize=1000)
 
 # Menyimpan hasil ke file CSV baru jika diperlukan
