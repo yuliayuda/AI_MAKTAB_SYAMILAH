@@ -1,8 +1,7 @@
 # main.py
 
-import pandas as pd
 import logging
-from data.preprocessing_data import load_data, preprocess_data
+from data.preprocessing_data import preprocess_data
 from training.train_model import train_all_models
 from evaluation.evaluate_model import evaluate_model
 
@@ -12,7 +11,7 @@ def main():
 
     # Proses memuat dan mempersiapkan data
     logging.info("Memulai proses pemrosesan data...")
-    data = preprocess_data('/kaggle/input/ar-id-en-stop/ar_stop_word.json')  # Ganti dengan path data Anda
+    data = preprocess_data('/kaggle/input/ar-id-en-stop/ar_stop_word.json')  # Path data JSON
     logging.info("Pemrosesan data selesai.")
 
     # Inisialisasi models
