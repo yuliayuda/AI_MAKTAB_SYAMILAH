@@ -6,7 +6,7 @@ from models.question_answering import answer_question
 
 # Load and preprocess Arabic dataset
 df = load_data("/kaggle/input/arabic-library/my_csv.csv")
-df['text'] = df['text'].apply(arabic_preprocessing)
+df['text'] = arabic_preprocessing(df['text'])
 
 # Split data into train and test sets
 train_data, test_data = split_data(df)
