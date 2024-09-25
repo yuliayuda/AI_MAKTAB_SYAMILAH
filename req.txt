@@ -7,3 +7,4 @@ nltk
 torch
 camel-tools  # Tools untuk pemrosesan bahasa Arab
 fuzzysearch  # Untuk pencarian istilah dalam teks Arab
+tqdm
