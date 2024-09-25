@@ -9,8 +9,9 @@ import nltk
 nltk.download('punkt')
 
 def arabic_preprocessing(texts):
+    # Menggunakan tqdm untuk menampilkan progres pemrosesan teks
     tqdm.pandas(desc="Memproses teks")
-
+    
     def clean_text(text):
         mapper = CharMapper.builtin_mapper('bw2ar')  # Buckwalter to Arabic
         clean_text = mapper.map_string(text)
@@ -18,45 +19,28 @@ def arabic_preprocessing(texts):
         tokens = word_tokenize(clean_text)
         return " ".join(tokens)
 
+    # Menggunakan tqdm untuk memproses teks
     processed_texts = []
-    total = len(texts)
-
-    for index, text in enumerate(texts):
+    for text in tqdm(texts, desc="Memproses teks", unit="teks"):
         processed_texts.append(clean_text(text))
-        # Hitung dan tampilkan persentase
-        percentage = (index + 1) / total * 100
-        print(f"Memproses teks: {percentage:.2f}% selesai", end='\r')  # Menampilkan progres di satu baris
-
-    print("\nProses selesai.")
+    
     return processed_texts
 
 def load_data_in_chunks(file_path, chunksize=1000):
-    print("Membaca dataset dalam chunks...")
+    print("Membaca dataset...")
     
-    total_rows = sum(1 for _ in open(file_path)) - 1  # Menghitung total baris di CSV
+    # Menghitung total baris di CSV
+    total_rows = sum(1 for _ in open(file_path)) - 1  
     chunk_results = []
-    total_chunks = 0
 
-    for chunk in pd.read_csv(file_path, chunksize=chunksize):
-        total_chunks += 1
-        chunk_size = len(chunk)
-        
-        # Tampilkan informasi chunk yang sedang diproses
-        print(f"\nMemproses chunk: ke {total_chunks} dengan {chunk_size} baris...", end='\r')
-        
+    # Menggunakan tqdm untuk memproses setiap chunk
+    for chunk in tqdm(pd.read_csv(file_path, chunksize=chunksize), total=(total_rows // chunksize), desc="Memproses chunk", unit="chunk"):
         # Proses teks dalam chunk
         processed_texts = arabic_preprocessing(chunk['text'])
         chunk_results.extend(processed_texts)
 
-        # Update progress
-        processed_rows = total_chunks * chunksize
-        percentage_loaded = (processed_rows / total_rows) * 100
-        progress_bar = '>' * int(percentage_loaded // 5) + '-' * (20 - int(percentage_loaded // 5))
-        print(f"Load Datasets: [{progress_bar}] {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
-
-    print("\n\nSemua chunk diproses.")
+    print("\nSemua chunk diproses.")
     return chunk_results
-
 
 
 
