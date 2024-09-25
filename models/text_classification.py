@@ -4,7 +4,6 @@ from sklearn.pipeline import make_pipeline
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 def train_text_classification(train_data, test_data):
-    # Tokenizer Arab
     vectorizer = TfidfVectorizer(tokenizer=simple_word_tokenize)
     model = LogisticRegression()
 
