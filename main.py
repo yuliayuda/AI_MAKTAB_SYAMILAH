@@ -16,8 +16,7 @@ from modules.translation_module import translate_text
 from modules.summarization_module import summarize_text
 from utils.postprocessing import format_output
 from data.preprocessing_data import load_data, preprocess_data
-
-from training.train_model import train_model
+from training.train_model import train_all_models
 from evaluation.evaluate_model import evaluate_model
 from logs.logging import setup_logging, log_message
 
@@ -69,3 +68,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+train_all_models(data)
