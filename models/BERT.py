@@ -1,8 +1,7 @@
 # models/BERT.py
 import pandas as pd
-from transformers import BertTokenizer, BertForSequenceClassification
-from transformers import Trainer, TrainingArguments
 import torch
+from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
 
 def load_data(file_path):
     return pd.read_csv(file_path)
@@ -50,7 +49,4 @@ def train_model(data):
     )
 
     trainer.train()
-
-if __name__ == "__main__":
-    data = load_data('/kaggle/input/arabic-library/my_csv.csv')
-    train_model(data)
+    return model
