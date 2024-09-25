@@ -31,7 +31,7 @@ def main():
     def main():
         # Proses memuat dan mempersiapkan data
         logging.info("Memulai proses pemrosesan data...")
-        data = preprocess_data('/path/to/your/data.csv')  # Ganti dengan path data Anda
+        data = preprocess_data('/kaggle/input/arabic-library/my_csv.csv')  # Ganti dengan path data Anda
         logging.info("Pemrosesan data selesai.")
     
         # Memulai pelatihan model
