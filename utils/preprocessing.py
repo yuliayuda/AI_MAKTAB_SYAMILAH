@@ -11,7 +11,6 @@ nltk.download('punkt')
 def arabic_preprocessing(texts):
     tqdm.pandas(desc="Memproses teks")
 
-    # Fungsi untuk membersihkan dan memproses teks
     def clean_text(text):
         mapper = CharMapper.builtin_mapper('bw2ar')  # Buckwalter to Arabic
         clean_text = mapper.map_string(text)
@@ -43,7 +42,7 @@ def load_data_in_chunks(file_path, chunksize=1000):
         chunk_size = len(chunk)
         
         # Tampilkan informasi chunk yang sedang diproses
-        print(f"\nMemproses chunk: ke {total_chunks} dengan {chunk_size} baris...")
+        print(f"\nMemproses chunk: ke {total_chunks} dengan {chunk_size} baris...", end='\r')
         
         # Proses teks dalam chunk
         processed_texts = arabic_preprocessing(chunk['text'])
@@ -52,10 +51,12 @@ def load_data_in_chunks(file_path, chunksize=1000):
         # Update progress
         processed_rows = total_chunks * chunksize
         percentage_loaded = (processed_rows / total_rows) * 100
-        print(f"Load Datasets: {'>' * int(percentage_loaded // 5)} {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
+        progress_bar = '>' * int(percentage_loaded // 5) + '-' * (20 - int(percentage_loaded // 5))
+        print(f"Load Datasets: [{progress_bar}] {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
 
     print("\n\nSemua chunk diproses.")
     return chunk_results
+
 
 
 
