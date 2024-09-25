@@ -1,4 +1,4 @@
-import pandas as pd
+import re
 from camel_tools.utils.charmap import CharMapper
 from nltk.tokenize import word_tokenize
 import nltk
@@ -10,11 +10,11 @@ def load_data(file_path):
     return pd.read_csv(file_path)
 
 def arabic_preprocessing(text):
-    # Normalisasi teks Arab menggunakan CharMapper dari camel-tools
-    mapper = CharMapper.builtin_mapper('ar_clean')
+    # Gunakan mapper yang sesuai dari camel-tools (seperti bw2ar atau lainnya)
+    mapper = CharMapper.builtin_mapper('bw2ar')  # Buckwalter to Arabic
     clean_text = mapper.map_string(text)
     
-    # Tokenisasi
+    # Tokenisasi menggunakan NLTK
     tokens = word_tokenize(clean_text)
     return " ".join(tokens)
 
