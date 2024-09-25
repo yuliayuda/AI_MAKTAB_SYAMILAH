@@ -6,7 +6,7 @@ from models.ner import named_entity_recognition
 from models.question_answering import answer_question
 
 # Load and preprocess Arabic dataset
-df = load_data("data/dataset.csv")
+df = load_data("/kaggle/input/arabic-library/my_csv.csv")
 df['text'] = df['text'].apply(arabic_preprocessing)
 
 # Split data into train and test sets
