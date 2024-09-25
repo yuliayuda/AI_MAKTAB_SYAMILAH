@@ -16,7 +16,7 @@ def main():
     
     # Proses memuat dan mempersiapkan data
     logging.info("Memulai proses pemrosesan data...")
-    data = load_data('/kaggle/input/arabic-library/my_csv.csv')  # Ganti dengan path data Anda
+    data = load_data('/kaggle/input/ar-id-en-stop/ar_stop_word.json')  # Ganti dengan path data Anda
     processed_data = preprocess_data(data)
     processed_file_path = 'data/processed/processed_dataset.csv'  # Pastikan direktori ini ada
     processed_data.to_csv(processed_file_path, index=False)  # Simpan sebagai CSV
