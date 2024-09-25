@@ -19,7 +19,7 @@ from data.preprocessing_data import load_data, preprocess_data
 from training.train_model import train_all_models
 from evaluation.evaluate_model import evaluate_model
 from logs.logging import setup_logging, log_message
-
+import logging
 
 def main():
     # Setup logging (jika diperlukan)
