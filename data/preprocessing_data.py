@@ -1,16 +1,20 @@
+# data/preprocessing_data.py
+
 import pandas as pd
+import json
 
 def load_data(file_path):
-    # Memuat dataset dari file CSV
-    return pd.read_csv(file_path)
+    # Memuat data dari file JSON
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    return pd.DataFrame(data)  # Mengembalikan sebagai DataFrame
 
-def preprocess_data(df):
-    # Lakukan preprocessing pada data
-    # Misalnya, menghapus nilai kosong atau duplikat
-    df.dropna(inplace=True)
-    df.drop_duplicates(inplace=True)
-    return df
+def preprocess_data(file_path):
+    # Memuat data menggunakan load_data
+    df = load_data(file_path)
     
-def save_processed_data(df, output_path):
-    # Simpan data yang sudah diproses ke file CSV
-    df.to_csv(output_path, index=False)
+    # Memproses DataFrame
+    df.dropna(inplace=True)  # Menghapus baris dengan nilai NaN
+    # Tambahkan langkah pemrosesan lain yang diperlukan
+
+    return df
