@@ -2,6 +2,23 @@
 
 import pandas as pd
 import json
+import logging
+
+# Mengatur konfigurasi logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def main():
+    logging.info("Memulai proses pemrosesan data...")
+    # Proses data dan pelatihan model
+
+    logging.info("Mulai evaluasi model...")
+    evaluation_results = evaluate_model(models, processed_data)
+    
+    # Cetak hasil evaluasi
+    logging.info(f"Hasil evaluasi: {evaluation_results}")
+
+if __name__ == "__main__":
+    main()
 
 def load_data(file_path):
     # Memuat data dari file JSON
