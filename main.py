@@ -36,19 +36,19 @@ def main():
     # Get answer from QA model
     #answer = get_answer(processed_input, reference)
 
-   # print("الجواب:", answer)  # "Jawaban:" dalam bahasa Arab
+    #print("الجواب:", answer)  # "Jawaban:" dalam bahasa Arab
     #print("المصدر:", reference)  # "Referensi:" dalam bahasa Arab
 
     # Terjemahkan jawaban jika diperlukan
-    translation = translate_text(answer, target_language="id")
+    #translation = translate_text(answer, target_language="id")
 
     # Ringkas jawaban jika diperlukan
-    summary = summarize_text(reference)
+    #summary = summarize_text(reference)
 
     # Format output untuk ditampilkan
-    output = format_output(answer, reference, translation, summary)
+    #output = format_output(answer, reference, translation, summary)
 
-    print("Output:", output)
+    #print("Output:", output)
 
     # Preprocessing data
     data = load_data('/kaggle/input/arabic-library/my_csv.csv')
