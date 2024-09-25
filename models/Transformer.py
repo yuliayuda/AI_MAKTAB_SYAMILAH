@@ -6,20 +6,10 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 def load_data(file_path):
     return pd.read_csv(file_path)
 
-def generate_text(prompt):
-    tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-    model = GPT2LMHeadModel.from_pretrained('gpt2')
-
-    inputs = tokenizer.encode(prompt, return_tensors='pt')
-    outputs = model.generate(inputs, max_length=50, num_return_sequences=1)
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
-
 def train_model(dataset):
-    # Tokenizer dan model
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
     model = GPT2LMHeadModel.from_pretrained('gpt2')
 
-    # Tokenisasi dan pembuatan dataset
     encodings = tokenizer(list(dataset['text']), truncation=True, padding=True, max_length=512)
     labels = encodings['input_ids'].copy()  # Labels untuk pelatihan
 
@@ -38,7 +28,6 @@ def train_model(dataset):
 
     dataset = TextDataset(encodings, labels)
 
-    # Menentukan argumen pelatihan
     training_args = TrainingArguments(
         output_dir='./results',
         evaluation_strategy="epoch",
@@ -56,9 +45,3 @@ def train_model(dataset):
 
     trainer.train()
     return model
-
-if __name__ == "__main__":
-    data = load_data('/kaggle/input/arabic-library/my_csv.csv')
-    prompt = "ما حكم اكل الميتة؟ "
-    generated_text = generate_text(prompt)
-    print(generated_text)
