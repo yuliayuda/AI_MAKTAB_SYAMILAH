@@ -33,24 +33,31 @@ def arabic_preprocessing(texts):
 
 def load_data_in_chunks(file_path, chunksize=1000):
     print("Membaca dataset dalam chunks...")
+    
+    total_rows = sum(1 for _ in open(file_path)) - 1  # Menghitung total baris di CSV
     chunk_results = []
+    total_chunks = 0
 
     for chunk in pd.read_csv(file_path, chunksize=chunksize):
-        print(f"Memproses chunk dengan {len(chunk)} baris...")
+        total_chunks += 1
+        chunk_size = len(chunk)
+        print(f"\nMemproses chunk ke-{total_chunks} dengan {chunk_size} baris...")
+        
+        # Proses teks dalam chunk
         processed_texts = arabic_preprocessing(chunk['text'])
         chunk_results.extend(processed_texts)
 
-    print("\nSemua chunk diproses.")
-    return chunk_results
+        # Update progress
+        processed_rows = total_chunks * chunksize
+        percentage_loaded = (processed_rows / total_rows) * 100
+        print(f"Loading datasets: {'|' * int(percentage_loaded // 5)} {percentage_loaded:.2f}% ({processed_rows}/{total_rows})", end='\r')
 
-def split_data(df, test_size=0.2):
-    from sklearn.model_selection import train_test_split
-    train, test = train_test_split(df, test_size=test_size)
-    return train, test
+    print("\n\nSemua chunk diproses.")
+    return chunk_results
 
 # Contoh penggunaan
 file_path = "/kaggle/input/arabic-library/my_csv.csv"  # Ganti dengan path dataset Anda
 processed_data = load_data_in_chunks(file_path, chunksize=1000)
 
 # Menyimpan hasil ke file CSV baru jika diperlukan
-pd.DataFrame(processed_data, columns=['processed_text']).to_csv("data/processed_data.csv", index=False)
+pd.DataFrame(processed_data, columns=['processed_text']).to_csv("data/processed/processed_data.csv", index=False)
