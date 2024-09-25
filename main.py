@@ -25,19 +25,19 @@ def main():
     # Setup logging (jika diperlukan)
     setup_logging()
 
-    user_input = input("حكم النية في الصلاة؟")
+    #user_input = input("حكم النية في الصلاة؟")
 
     # Preprocessing input
-    processed_input = preprocess_input(user_input)
+    #processed_input = preprocess_input(user_input)
 
     # Search for reference
-    reference = search_reference(processed_input)
+    #reference = search_reference(processed_input)
     
     # Get answer from QA model
-    answer = get_answer(processed_input, reference)
+    #answer = get_answer(processed_input, reference)
 
-    print("الجواب:", answer)  # "Jawaban:" dalam bahasa Arab
-    print("المصدر:", reference)  # "Referensi:" dalam bahasa Arab
+   # print("الجواب:", answer)  # "Jawaban:" dalam bahasa Arab
+    #print("المصدر:", reference)  # "Referensi:" dalam bahasa Arab
 
     # Terjemahkan jawaban jika diperlukan
     translation = translate_text(answer, target_language="id")
