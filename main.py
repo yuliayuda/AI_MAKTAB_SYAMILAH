@@ -1,11 +1,11 @@
-from utils.preprocessing import load_data_in_chunks, arabic_preprocessing
+from utils.preprocessing import load_data, arabic_preprocessing
 from models.text_classification import train_text_classification
 from models.information_retrieval import retrieve_information
 from models.ner import named_entity_recognition
 from models.question_answering import answer_question
 
 # Load and preprocess Arabic dataset
-df = load_data_in_chunks("/kaggle/input/arabic-library/my_csv.csv")
+df = load_data("/kaggle/input/arabic-library/my_csv.csv")
 df['text'] = arabic_preprocessing(df['text'])
 
 # 1. Text Classification
