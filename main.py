@@ -5,7 +5,7 @@ from models.ner import named_entity_recognition
 from models.question_answering import answer_question
 
 # Load and preprocess Arabic dataset
-df = load_data("/kaggle/input/arabic-library/my_csv.csv")
+df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
 df['text'] = arabic_preprocessing(df['text'])
 
 # 1. Text Classification
