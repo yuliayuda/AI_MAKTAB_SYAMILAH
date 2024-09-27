@@ -10,9 +10,9 @@ def train_text_classification(train_data, test_data):
     book_name = "Sahih Muslim"
 
     pipeline = make_pipeline(vectorizer, model)
-    pipeline.fit(train_data[text],train_data[book_name])
+    pipeline.fit(train_data[text],train_data[text])
 
-    accuracy = pipeline.score(test_data[book_name],test_data[text])
+    accuracy = pipeline.score(test_data[book_name],test_data[book_name])
     print(f"Accuracy: {accuracy * 100:.2f}%")
 
     return pipeline
