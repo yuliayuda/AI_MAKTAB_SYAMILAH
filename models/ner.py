@@ -1,6 +1,6 @@
 from transformers import pipeline
 
-def named_entity_recognition(text):
+def retrieve_information(text):
       text  = "Sahih Muslim"
       ner_model = pipeline("ner", model="asafaya/bert-base-arabic")
       ner_results = ner_model(text)
