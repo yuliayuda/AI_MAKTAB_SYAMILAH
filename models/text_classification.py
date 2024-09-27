@@ -8,9 +8,9 @@ def train_text_classification(train_data, test_data):
     model = LogisticRegression()
 
     pipeline = make_pipeline(vectorizer, model)
-    pipeline.fit(train_data['text'], train_data['Book_name'])
+    pipeline.fit(train_data['text'])
 
-    accuracy = pipeline.score(test_data['text'], test_data['Book_name'])
+    accuracy = pipeline.score(test_data['text'])
     print(f"Accuracy: {accuracy * 100:.2f}%")
 
     return pipeline
