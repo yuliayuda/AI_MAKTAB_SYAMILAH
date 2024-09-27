@@ -2,7 +2,7 @@ from utils.preprocessing import load_data, arabic_preprocessing
 from models.text_classification import train_text_classification
 from models.information_retrieval import retrieve_information
 from models.ner import named_entity_recognition
-from models.question_answering import answer_questionfrom 
+from models.question_answering import answer_question 
 from sklearn.model_selection import train_test_split
 
 
