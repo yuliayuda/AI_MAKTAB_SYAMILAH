@@ -10,6 +10,12 @@ from sklearn.model_selection import train_test_split
 df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
 df['Sahih Bukhari'] = arabic_preprocessing(df['Sahih Bukhari'])
 
+
+# Load and preprocess Arabic dataset for testing from different CSV file
+test_df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Muslim.csv")  # Misal CSV lain sebagai data uji
+text="Sahih Muslim"
+test_df['text'] = arabic_preprocessing(test_df['text'])
+
 # Membagi data menjadi train dan test set
 train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
 
