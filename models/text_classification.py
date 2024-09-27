@@ -6,6 +6,7 @@ from camel_tools.tokenizers.word import simple_word_tokenize
 def train_text_classification(train_data, test_data):
     vectorizer = TfidfVectorizer(tokenizer=simple_word_tokenize)
     model = LogisticRegression()
+    text  = "Sahih Muslim"
 
     pipeline = make_pipeline(vectorizer, model)
     pipeline.fit(train_data[text])
