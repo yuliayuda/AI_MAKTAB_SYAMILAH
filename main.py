@@ -7,17 +7,17 @@ from sklearn.model_selection import train_test_split
 
 
 # Load and preprocess Arabic dataset
-df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
-df['Sahih Bukhari'] = arabic_preprocessing(df['Sahih Bukhari'])
+train_data = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
+train_data['Sahih Bukhari'] = arabic_preprocessing(train_data['Sahih Bukhari'])
 
 
 # Load and preprocess Arabic dataset for testing from different CSV file
-test_df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Muslim.csv")  # Misal CSV lain sebagai data uji
+test_data = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Muslim.csv")  # Misal CSV lain sebagai data uji
 text="Sahih Muslim"
-test_df[text] = arabic_preprocessing(test_df[text])
+test_data[text] = arabic_preprocessing(test_data[text])
 
 # Membagi data menjadi train dan test set
-train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
+# train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
 
 # 1. Text Classification
 print("Training Text Classification model...")
@@ -26,7 +26,7 @@ text_class_model = train_text_classification(train_data, test_data)  # Menambahk
 # 2. Information Retrieval
 print("\nInformation Retrieval Test:")
 query = "ما هو الموضوع الرئيسي في هذا النص؟"
-retrieved_text = retrieve_information(query, df)
+retrieved_text = retrieve_information(query, train_data)
 print("Retrieved Text:", retrieved_text)
 
 # 3. Named Entity Recognition (NER)
