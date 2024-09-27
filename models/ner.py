@@ -1,12 +1,9 @@
 from transformers import pipeline
 
 def named_entity_recognition(text):
-      text  = "Sahih Muslim"
-      ner_model = pipeline("ner", model="asafaya/bert-base-arabic")
-      retrieved_text = ner_model(text)
+    # Menggunakan model pre-trained untuk NER bahasa Arab
+    ner_model = pipeline("ner", model="asafaya/bert-base-arabic")
+    ner_results = ner_model(text)
 
-for entity in retrieved_text:
-      print(f"Entity: {entity['word']}, Label: {entity['entity']}")
-
-
-
+    for entity in ner_results:
+        print(f"Entity: {entity['word']}, Label: {entity['entity']}")
