@@ -6,7 +6,7 @@ from models.question_answering import answer_question
 
 # Load and preprocess Arabic dataset
 df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
-df['text'] = arabic_preprocessing(df['text'])
+df['Sahih Bukhari'] = arabic_preprocessing(df['Sahih Bukhari'])
 
 # 1. Text Classification
 print("Training Text Classification model...")
