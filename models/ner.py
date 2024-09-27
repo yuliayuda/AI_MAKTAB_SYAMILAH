@@ -1,11 +1,11 @@
 from transformers import pipeline
 
-def retrieve_information(text):
+def named_entity_recognition(text):
       text  = "Sahih Muslim"
       ner_model = pipeline("ner", model="asafaya/bert-base-arabic")
-      ner_results = ner_model(text)
+      retrieved_text = ner_model(text)
 
-for entity in ner_results:
+for entity in retrieved_text:
       print(f"Entity: {entity['word']}, Label: {entity['entity']}")
 
 
