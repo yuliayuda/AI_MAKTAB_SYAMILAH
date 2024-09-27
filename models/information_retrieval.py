@@ -3,8 +3,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 def retrieve_information(query, data):
+    text  = "Sahih Muslim"
     vectorizer = TfidfVectorizer(tokenizer=simple_word_tokenize)
-          text  = "Sahih Muslim"
     tfidf_matrix = vectorizer.fit_transform(data[text])
     
     query_vec = vectorizer.transform([query])
