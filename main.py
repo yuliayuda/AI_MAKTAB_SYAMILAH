@@ -8,9 +8,12 @@ from models.question_answering import answer_question
 df = load_data("/kaggle/input/arabic-hadith/All Hadith Books/Sahih Bukhari.csv")
 df['Sahih Bukhari'] = arabic_preprocessing(df['Sahih Bukhari'])
 
+# Membagi data menjadi train dan test set
+train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
+
 # 1. Text Classification
 print("Training Text Classification model...")
-text_class_model = train_text_classification(df)  # Sesuaikan jika diperlukan
+text_class_model = train_text_classification(train_data, test_data)  # Menambahkan test_data sebagai argumen kedua
 
 # 2. Information Retrieval
 print("\nInformation Retrieval Test:")
